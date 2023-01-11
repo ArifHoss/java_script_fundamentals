@@ -23,22 +23,21 @@
 </head>
 
 <body>
+<h3>Drinks App</h3>
+<p>Please add drinks to your cart below</p>
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is my first java fundamentals assignments</p>
+<select name="drinks" id="drinks">
+</select>
+<span id="price"></span>
+<input type="number" name="quantity" id="quantity" min="0" max="10" value="1">
+<button id="add">Add to Cart</button>
+<h4>Cart:</h4>
+<ul id="cart">
+</ul>
+<p id="totalDue">Total Due: 0.0</p>
+<button id="pay">Pay now</button>
+<script src="./js/app.js"></script>
 
-
-
-  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
-
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
 </body>
 
 </html>
