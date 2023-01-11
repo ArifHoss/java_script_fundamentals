@@ -10,4 +10,23 @@ let drinks = [];
 let cart = [];
 let totalDue = 0.0;
 
+fetch("https://hickory-quilled-actress.glitch.me/computers")
+  .then(response => response.json())
+  .then(data => drinks = data)
+  .then(drinks => addDrinksToMenu(drinks));
+
+const  addDrinksToMenu =(drinks) => {
+  drinks.forEach(x => addDrinkToMenu(x));
+}
+
+const addDrinkToMenu =(drink) =>{
+  const drinkElement = document.createElement("option");
+  drinkElement.value = drink.id;
+  drinkElement.appendChild(document.createTextNode(drink.description));
+  drinksElement.appendChild(drinkElement)
+}
+
+
+
+
 
