@@ -17,6 +17,7 @@ fetch("https://hickory-quilled-actress.glitch.me/computers")
 
 const  addDrinksToMenu =(drinks) => {
   drinks.forEach(x => addDrinkToMenu(x));
+  priceElement.innerText = drinks[0].price;
 }
 
 const addDrinkToMenu =(drink) =>{
@@ -25,6 +26,13 @@ const addDrinkToMenu =(drink) =>{
   drinkElement.appendChild(document.createTextNode(drink.description));
   drinksElement.appendChild(drinkElement)
 }
+
+const handleDrinkMenuChange = e =>{
+  const selectedDrink = drinks[e.target.selectedIndex];
+  priceElement.innerText = selectedDrink.price;
+}
+
+drinksElement.addEventListener("change",handleDrinkMenuChange)
 
 
 
