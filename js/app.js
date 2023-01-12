@@ -10,7 +10,7 @@ let drinks = [];
 let cart = [];
 let totalDue = 0.0;
 
-fetch("https://hickory-quilled-actress.glitch.me/computers")
+fetch("https://my-json-server.typicode.com/SeanNoroff/drinks-api/drinks")
   .then(response => response.json())
   .then(data => drinks = data)
   .then(drinks => addDrinksToMenu(drinks));
@@ -30,9 +30,12 @@ const addDrinkToMenu =(drink) =>{
 const handleDrinkMenuChange = e =>{
   const selectedDrink = drinks[e.target.selectedIndex];
   priceElement.innerText = selectedDrink.price;
+
+
+  console.log("HEJ");
 }
 
-drinksElement.addEventListener("change",handleDrinkMenuChange)
+drinksElement.addEventListener("change",handleDrinkMenuChange);
 
 
 
