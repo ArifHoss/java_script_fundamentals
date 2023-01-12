@@ -1,40 +1,45 @@
-const drinksElement = document.getElementById("drinks");
-const priceElement = document.getElementById("price")
-const addElement = document.getElementById("add")
-const cartElement = document.getElementById("cart")
-const quantityElement = document.getElementById("quantity")
-const payButtonElement = document.getElementById("pay")
-const totalDueElement = document.getElementById("totalDue")
+let word1 = document.getElementById("value1");
+let word2 = document.getElementById("value2");
+let word3 = document.getElementById("value3");
 
-let drinks = [];
-let cart = [];
-let totalDue = 0.0;
 
-fetch("https://hickory-quilled-actress.glitch.me/computers")
-  .then(response => response.json())
-  .then(data => drinks = data)
-  .then(drinks => addDrinksToMenu(drinks));
 
-const  addDrinksToMenu =(drinks) => {
-  drinks.forEach(x => addDrinkToMenu(x));
-  priceElement.innerText = drinks[0].price;
+
+
+function check (str){
+
+
+  let result = "";
+
+  for(let char of str){
+    if(char >= "A" && char <= "Z"){
+      result += char;
+    }
+  }
+
+
+  for(let char of str){
+    if(char >= "a" && char <= "z"){
+      result += char;
+    }
+  }
+
+  for(let char of str){
+    if(char >= "0" && char <= "9"){
+      result += char;
+    }
+  }
+  return result;
 }
 
-const addDrinkToMenu =(drink) =>{
-  const drinkElement = document.createElement("option");
-  drinkElement.value = drink.id;
-  drinkElement.appendChild(document.createTextNode(drink.description));
-  drinksElement.appendChild(drinkElement)
-}
 
-const handleDrinkMenuChange = e =>{
-  const selectedDrink = drinks[e.target.selectedIndex];
-  priceElement.innerText = selectedDrink.price;
-}
+check(word1)
+check(word2)
+check(word3)
 
-drinksElement.addEventListener("change",handleDrinkMenuChange)
+console.log(check(word1))
 
+console.log(check(word2))
 
-
-
+console.log(check(word3))
 
