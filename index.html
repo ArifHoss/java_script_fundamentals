@@ -27,7 +27,7 @@
 <body>
 
 <header class="container" id="co">
-  <canvas id="c"></canvas>
+<!--  <canvas id="c"></canvas>-->
   <h1>Komputer Store</h1>
 </header>
 
@@ -39,23 +39,20 @@
   <div class="row">
     <div class="column" style="background-color: #aaa">
       <h4>Arif Hossain</h4>
-      <p>Balance 200kr.</p>
-      <button class="button">Get a loan</button>
+      <p id="loanBalance">Balance 0.0 kr</p>
+      <button class="button" id="loan">Get a loan</button>
     </div>
     <div class="column" style="background-color: #bbb">
       <h4>Work</h4>
-      <p>pay 0 kr.</p>
-      <button class="button" >Bank</button>
-      <button class="button">Work</button>
+      <p id="pay">Pay 0 kr</p>
+      <button class="button" id="bank">Bank</button>
+      <button class="button" id="work">Work</button>
     </div>
     <div class="column" style="background-color: #ccc">
       <h4>Laptops</h4>
       <select name="laptops" id="laptops"></select>
-      <ul>
       <h4>Features: </h4>
-        <p>Some text..</p>
-        <p>Some text..</p>
-        <p>Some text..</p>
+      <ul id="cart">
       </ul>
     </div>
   </div>
@@ -64,19 +61,17 @@
 
 <div class="display" style="background-color: #ddd">
  <div>
-   <h4>Display from select</h4>
-   <p>Some text .....</p>
-   <p>Some text .....</p>
-   <p>Some text .....</p>
-   <p>Some text .....</p>
+   <h4 id="selectedLaptop"></h4>
+   <p id="laptopDetails"></p>
+
  </div>
   <div>
-    <h4>1500 SEK</h4>
-    <button class="button">BUY NOW</button>
+    <h4><span id="laptopPrice"></span></h4>
+    <button class="button" id="buyNow">BUY NOW</button>
   </div>
 </div>
 <script src="index.js"></script>
-<script src="header.js"></script>
+<!--<script src="header.js"></script>-->
 </body>
 
 </html>
