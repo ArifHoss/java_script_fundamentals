@@ -1,6 +1,8 @@
 const bankBalanceElement = document.getElementById("bankBalance");
 const loanElement = document.getElementById("loan");
+const payLoanElement = document.getElementById("payLoan");
 const paySalaryElement = document.getElementById("pay");
+const loanLeftElement = document.getElementById("loanLeft");
 const bankElement = document.getElementById("bank");
 const workElement = document.getElementById("work");
 const laptopsElement = document.getElementById("laptops");
@@ -13,9 +15,7 @@ const imageElement = document.getElementById("image");
 
 
 let laptops = [];
-let loanBalance = [];
-let bankBalance = [];
-let laptopPrice = [];
+let hasLoan = false;
 
 fetch("https://hickory-quilled-actress.glitch.me/computers")
   .then(response => response.json())
@@ -24,37 +24,43 @@ fetch("https://hickory-quilled-actress.glitch.me/computers")
 
 const addLaptopsToMenu = (laptops) => {
   laptops.forEach(x => addLaptopToMenu(x));
+
+  updateComputerInfo(laptops[0]);
 }
 
 
-const addLaptopToMenu= (laptop) =>{
+const addLaptopToMenu = (laptop) => {
   const laptopElement = document.createElement("option");
   laptopElement.value = laptop.id;
   laptopElement.appendChild(document.createTextNode(laptop.title));
 
   laptopsElement.appendChild(laptopElement);
+
+
 }
 
-const handleLaptopMenuChange = e =>{
-  const selectedLaptop = laptops[e.target.selectedIndex];
-
-
-
-  laptopPriceElement.innerText = selectedLaptop.price +" SEK";
+function updateComputerInfo(selectedLaptop) {
+  laptopPriceElement.innerText = selectedLaptop.price + " SEK";
   imageElement.src = `https://hickory-quilled-actress.glitch.me/${selectedLaptop.image}`
   selectedLaptopElement.innerText = selectedLaptop.title
   laptopDetailsElement.innerText = selectedLaptop.description;
   specsElement.innerText = selectedLaptop.specs.join("\n ");
+}
+
+const handleLaptopMenuChange = e => {
+  const selectedLaptop = laptops[e.target.selectedIndex];
+
+  updateComputerInfo(selectedLaptop);
 
 }
 
 const handleSalary = () => {
   let paySalary = paySalaryElement.innerText;
   let currentSalary = parseInt(paySalary);
-  paySalaryElement.innerText =  currentSalary + 100;
+  paySalaryElement.innerText = currentSalary + 100;
 }
 
-const handleBankBalance = () =>{
+const handleBankBalance = () => {
   let bankBalance = parseInt(bankBalanceElement.innerText);
   let paySalaryBalance = parseInt(paySalaryElement.innerText);
 
@@ -69,18 +75,70 @@ const handleLaptopPurchase = () => {
   let laptopPrice = parseInt(laptopPriceElement.innerText);
   let bankBalance = parseInt(bankBalanceElement.innerText);
 
-  if (laptopPrice > bankBalance){
+  if (laptopPrice > bankBalance) {
     alert(`Sorry you dont have enough balance! Work and earn some money first!`)
   }
-  if (laptopPrice <= bankBalance){
-    bankBalanceElement.innerText = bankBalance - laptopPrice ;
+  if (laptopPrice <= bankBalance) {
+    bankBalanceElement.innerText = bankBalance - laptopPrice;
     alert(`Congratulations! Your just bought' ${selectedLaptopElement.innerText}' laptop.`)
   }
 
 
 }
 
+const handleGetLoan = () => {
+  const currentBalance = parseInt(bankBalanceElement.innerText);
+  const loanLeft = parseInt(loanLeftElement.innerText);
+
+
+  if (!hasLoan) {
+
+    const loanAmount = parseInt(prompt("Please enter the amount you want to borrow."));
+
+    if (currentBalance === 0 || loanAmount > (currentBalance * 2)) {
+      alert(`You dont have enough credit to get a loan Or you already has a loan!`)
+    }
+    if (loanAmount === currentBalance || loanAmount <= (currentBalance * 2)) {
+      bankBalanceElement.innerText = currentBalance + loanAmount;
+      loanLeftElement.innerText = loanLeft + loanAmount;
+      hasLoan === true;
+    }
+
+
+  } else {
+    alert(`Oooooops! You already has a loan!`)
+  }
+
+
+}
+
+const handleLoanChange = () => {
+  if (parseInt(loanLeftElement.innerText) > 0) {
+    hasLoan = true;
+  }else {
+    hasLoan = false;
+  }
+}
+
+const handlePayLoanButton = () => {
+  let loanLeft = parseInt(loanLeftElement.innerText);
+  let currentBalance = parseInt(bankBalanceElement.innerText);
+  let paySalaryAmount = parseInt(paySalaryElement.innerText);
+
+  loanLeftElement.innerText = loanLeft - paySalaryAmount;
+  paySalaryElement.innerText = 0;
+
+  //
+  // bankBalanceElement.innerText = paySalaryAmount - loanLeft;
+
+
+
+}
+
+loanLeftElement.addEventListener("DOMSubtreeModified", handleLoanChange)
 laptopsElement.addEventListener("change", handleLaptopMenuChange);
 workElement.addEventListener("click", handleSalary);
 bankElement.addEventListener("click", handleBankBalance);
 buyNowElement.addEventListener("click", handleLaptopPurchase);
+loanElement.addEventListener("click", handleGetLoan);
+payLoanElement.addEventListener("click", handlePayLoanButton);
