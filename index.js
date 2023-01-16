@@ -13,7 +13,6 @@ const imageElement = document.getElementById("image");
 
 
 let laptops = [];
-// let specs = [];
 let loanBalance = [];
 let bankBalance = [];
 let laptopPrice = [];
@@ -25,7 +24,6 @@ fetch("https://hickory-quilled-actress.glitch.me/computers")
 
 const addLaptopsToMenu = (laptops) => {
   laptops.forEach(x => addLaptopToMenu(x));
-  // laptopPriceElement.innerText = laptops[0].price;
 }
 
 
@@ -35,14 +33,11 @@ const addLaptopToMenu= (laptop) =>{
   laptopElement.appendChild(document.createTextNode(laptop.title));
 
   laptopsElement.appendChild(laptopElement);
-
-
-  // laptopDetailsElement.appendChild(laptopElement);
 }
 
 const handleLaptopMenuChange = e =>{
   const selectedLaptop = laptops[e.target.selectedIndex];
-  laptopPriceElement.innerText = selectedLaptop.price;
+  laptopPriceElement.innerText = selectedLaptop.price +" SEK";
   imageElement.src = `https://hickory-quilled-actress.glitch.me/${selectedLaptop.image}`
   selectedLaptopElement.innerText = selectedLaptop.title
   laptopDetailsElement.innerText = selectedLaptop.description;
