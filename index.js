@@ -37,6 +37,9 @@ const addLaptopToMenu= (laptop) =>{
 
 const handleLaptopMenuChange = e =>{
   const selectedLaptop = laptops[e.target.selectedIndex];
+
+
+
   laptopPriceElement.innerText = selectedLaptop.price +" SEK";
   imageElement.src = `https://hickory-quilled-actress.glitch.me/${selectedLaptop.image}`
   selectedLaptopElement.innerText = selectedLaptop.title
@@ -52,17 +55,32 @@ const handleSalary = () => {
 }
 
 const handleBankBalance = () =>{
-  let loanBalance = parseInt(bankBalanceElement.innerText);
+  let bankBalance = parseInt(bankBalanceElement.innerText);
   let paySalaryBalance = parseInt(paySalaryElement.innerText);
 
 
-  bankBalanceElement.innerText = loanBalance + paySalaryBalance;
+  bankBalanceElement.innerText = bankBalance + paySalaryBalance;
   paySalaryElement.innerText = 0;
 
-  console.log(bankBalanceElement);
+
+}
+
+const handleLaptopPurchase = () => {
+  let laptopPrice = parseInt(laptopPriceElement.innerText);
+  let bankBalance = parseInt(bankBalanceElement.innerText);
+
+  if (laptopPrice > bankBalance){
+    alert(`Sorry you dont have enough balance! Work and earn some money first!`)
+  }
+  if (laptopPrice <= bankBalance){
+    bankBalanceElement.innerText = bankBalance - laptopPrice ;
+    alert(`Congratulations! Your just bought' ${selectedLaptopElement.innerText}' laptop.`)
+  }
+
 
 }
 
 laptopsElement.addEventListener("change", handleLaptopMenuChange);
 workElement.addEventListener("click", handleSalary);
 bankElement.addEventListener("click", handleBankBalance);
+buyNowElement.addEventListener("click", handleLaptopPurchase);
