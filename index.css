@@ -52,7 +52,6 @@ section{
   color: white;
 }
 
-
 h1 {
   position: absolute;
   margin: 0;
@@ -79,6 +78,7 @@ h1 {
 
 
 }
+
 .column{
   border-radius: 10px;
 
@@ -113,15 +113,19 @@ button:active{
 }
 
 #image{
-  width: 50%;
-  height: 50%;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  padding-right: 150px;
+
 
 }
 .computerImage{
   grid-template-columns: 1fr 1fr;
   flex-direction: column;
   display: grid;
-  padding-top: 60px;
+
+
 }
 
 
