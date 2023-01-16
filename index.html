@@ -26,10 +26,12 @@
 
 <body>
 
-<header class="container" id="co">
-<!--  <canvas id="c"></canvas>-->
-  <h1>Komputer Store</h1>
-</header>
+<div class="header-image">
+  <div class="header-text">
+    <h1>Komputer Store</h1>
+  </div>
+  <!--  <canvas id="c"></canvas>-->
+</div>
 
 <section>
 
@@ -52,7 +54,7 @@
       <h4>Laptops</h4>
       <select name="laptops" id="laptops"></select>
       <h4>Features: </h4>
-      <ul id="cart">
+      <ul id="specs">
       </ul>
     </div>
   </div>
@@ -60,9 +62,15 @@
 </section>
 
 <div class="display" style="background-color: #ddd">
- <div>
+
+ <div class="computerImage">
+   <div>
+     <img src="" alt="" id="image">
+   </div>
+   <div>
    <h4 id="selectedLaptop"></h4>
-   <p id="laptopDetails"></p>
+     <p id="laptopDetails"></p>
+   </div>
 
  </div>
   <div>
