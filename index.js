@@ -58,18 +58,33 @@ const handleLaptopMenuChange = e => {
 }
 
 const handleSalary = () => {
-  let paySalary = paySalaryElement.innerText;
-  let currentSalary = parseInt(paySalary);
+  // let paySalary = paySalaryElement.innerText;
+  let currentSalary = parseInt(paySalaryElement.innerText);
   paySalaryElement.innerText = currentSalary + 100;
 }
 
 const handleBankBalance = () => {
   let bankBalance = parseInt(bankBalanceElement.innerText);
   let paySalaryBalance = parseInt(paySalaryElement.innerText);
+  let loanLeft = parseInt(loanLeftElement.innerText);
 
 
-  bankBalanceElement.innerText = bankBalance + paySalaryBalance;
-  paySalaryElement.innerText = 0;
+
+  if (hasLoan === false){
+    bankBalanceElement.innerText = bankBalance + paySalaryBalance;
+    paySalaryElement.innerText = 0;
+  }else if (hasLoan === true){
+    let tenPercent = paySalaryBalance / 10;
+    loanLeft = loanLeft - tenPercent;
+    loanLeftElement.innerText = loanLeft;
+    let payBalanceLeftAfterTenPercent = paySalaryBalance - tenPercent;
+
+    bankBalanceElement.innerText =bankBalance + payBalanceLeftAfterTenPercent;
+    paySalaryElement.innerText = 0;
+
+    // alert(loanLeft);
+    // alert(`You have loan? Careful`);
+  }
 
 
 }
@@ -127,16 +142,20 @@ const handleLoanChange = () => {
 const handlePayLoanButton = () => {
   let loanLeft = parseInt(loanLeftElement.innerText);
   let paySalaryAmount = parseInt(paySalaryElement.innerText);
+  let bankBalance = parseInt(bankBalanceElement.innerText);
 
   if (hasLoan === false) {
+
     alert(`You don't have any loan.`);
-
   } else if (paySalaryAmount === 0) {
-    alert(`You have to work and earn to pay your loan.`);
 
+    alert(`You have to work and earn to pay your loan.`);
   } else if (hasLoan === true || paySalaryAmount >= loanLeft) {
+
     paySalaryElement.innerText = paySalaryAmount - loanLeft;
-    handleBankBalance();
+    bankBalanceElement.innerText = bankBalance + paySalaryAmount;
+
+    paySalaryElement.innerText = 0;
     loanLeftElement.innerText = 0;
   }
 
