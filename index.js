@@ -96,7 +96,7 @@ const handleGetLoan = () => {
     const loanAmount = parseInt(prompt("Please enter the amount you want to borrow."));
 
     if (currentBalance === 0 || loanAmount > (currentBalance * 2)) {
-      alert(`You dont have enough credit to get a loan Or you already has a loan!`)
+      alert(`You don't have enough credit to get a loan Or you already has a loan!`)
     }
     if (loanAmount === currentBalance || loanAmount <= (currentBalance * 2)) {
       bankBalanceElement.innerText = currentBalance + loanAmount;
@@ -122,14 +122,18 @@ const handleLoanChange = () => {
 
 const handlePayLoanButton = () => {
   let loanLeft = parseInt(loanLeftElement.innerText);
-  let currentBalance = parseInt(bankBalanceElement.innerText);
   let paySalaryAmount = parseInt(paySalaryElement.innerText);
 
-  loanLeftElement.innerText = loanLeft - paySalaryAmount;
-  paySalaryElement.innerText = 0;
-
-  //
-  // bankBalanceElement.innerText = paySalaryAmount - loanLeft;
+  if (hasLoan === false){
+    alert(`You don't have any loan.`)
+  }else if (paySalaryAmount === 0){
+    alert(`You have to work and earn to pay your loan.`)
+  }else if (hasLoan === true || paySalaryAmount >= loanLeft){
+    //loanLeftElement.innerText = loanLeft - paySalaryAmount;
+    paySalaryElement.innerText = paySalaryAmount - loanLeft;
+    //paySalaryElement.innerText = 0;
+    loanLeftElement.innerText = 0;
+  }
 
 
 
