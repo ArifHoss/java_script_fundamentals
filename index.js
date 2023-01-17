@@ -131,6 +131,7 @@ const handlePayLoanButton = () => {
   }else if (hasLoan === true || paySalaryAmount >= loanLeft){
     //loanLeftElement.innerText = loanLeft - paySalaryAmount;
     paySalaryElement.innerText = paySalaryAmount - loanLeft;
+    handleBankBalance();
     //paySalaryElement.innerText = 0;
     loanLeftElement.innerText = 0;
   }
