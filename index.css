@@ -97,6 +97,9 @@ button{
   border-radius: 30px;
   padding: 15px 32px;
 }
+.loan{
+  display: none;
+}
 
 .buttons{
   background-color: white;
@@ -116,7 +119,7 @@ button:active{
   width: 200px;
   height: 200px;
   border-radius: 10px;
-  padding-right: 150px;
+  padding-right: 300px;
 
 
 }

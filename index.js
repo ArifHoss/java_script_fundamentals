@@ -12,10 +12,13 @@ const laptopDetailsElement = document.getElementById("laptopDetails");
 const laptopPriceElement = document.getElementById("laptopPrice");
 const buyNowElement = document.getElementById("buyNow");
 const imageElement = document.getElementById("image");
+const loanDivElement = document.getElementById("loanDiv");
 
 
 let laptops = [];
 let hasLoan = false;
+
+
 
 fetch("https://hickory-quilled-actress.glitch.me/computers")
   .then(response => response.json())
@@ -104,39 +107,38 @@ const handleGetLoan = () => {
       hasLoan === true;
     }
 
-
   } else {
     alert(`Oooooops! You already has a loan!`)
   }
-
 
 }
 
 const handleLoanChange = () => {
   if (parseInt(loanLeftElement.innerText) > 0) {
     hasLoan = true;
-  }else {
+    loanDivElement.style.display = "inline";
+  } else {
+    loanDivElement.style.display = "none";
     hasLoan = false;
   }
+
 }
 
 const handlePayLoanButton = () => {
   let loanLeft = parseInt(loanLeftElement.innerText);
   let paySalaryAmount = parseInt(paySalaryElement.innerText);
 
-  if (hasLoan === false){
-    alert(`You don't have any loan.`)
-  }else if (paySalaryAmount === 0){
-    alert(`You have to work and earn to pay your loan.`)
-  }else if (hasLoan === true || paySalaryAmount >= loanLeft){
-    //loanLeftElement.innerText = loanLeft - paySalaryAmount;
+  if (hasLoan === false) {
+    alert(`You don't have any loan.`);
+
+  } else if (paySalaryAmount === 0) {
+    alert(`You have to work and earn to pay your loan.`);
+
+  } else if (hasLoan === true || paySalaryAmount >= loanLeft) {
     paySalaryElement.innerText = paySalaryAmount - loanLeft;
     handleBankBalance();
-    //paySalaryElement.innerText = 0;
     loanLeftElement.innerText = 0;
   }
-
-
 
 }
 
