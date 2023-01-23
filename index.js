@@ -152,9 +152,13 @@ const handlePayLoanButton = () => {
     alert(`You have to work and earn to pay your loan.`);
   } else if (hasLoan === true || paySalaryAmount >= loanLeft) {
 
-    paySalaryElement.innerText = paySalaryAmount - loanLeft;
-    bankBalanceElement.innerText = bankBalance + paySalaryAmount;
 
+    // paySalaryElement.innerText = paySalaryAmount - loanLeft;
+    // bankBalanceElement.innerText = bankBalance + paySalaryAmount;
+
+
+     paySalaryAmount = paySalaryAmount - loanLeft;
+     bankBalance = bankBalance - paySalaryAmount;
     paySalaryElement.innerText = 0;
     loanLeftElement.innerText = 0;
   }
