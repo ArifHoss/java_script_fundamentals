@@ -21,33 +21,50 @@
 
   <meta name="theme-color" content="#fafafa">
   <link rel="stylesheet" href="index.css">
+
 </head>
 
 <body>
+
+<div class="header-image">
+  <div class="header-text">
+    <h1>Komputer Store</h1>
+  </div>
+  <!--  <canvas id="c"></canvas>-->
+</div>
+
 <section>
-  <header>
-  <h1>Komputer Store</h1>
-  </header>
+
+
+
+
   <div class="row">
     <div class="column" style="background-color: #aaa">
       <h4>Arif Hossain</h4>
-      <p>Balance 200kr.</p>
-      <button style="background-color: darkolivegreen">Get a loan</button>
+
+      <p>Balance <span id="bankBalance">0.0</span>  SEK</p>
+
+
+      <button class="button" id="loan">Get a loan</button>
+      <div class="loan" id="loanDiv">
+      <button class="button" id="payLoan">Pay loan</button>
+        <p>Loan <span id="loanLeft">0</span> SEK</p>
+      </div>
+
+
     </div>
     <div class="column" style="background-color: #bbb">
       <h4>Work</h4>
-      <p>pay 0 kr.</p>
-      <button style="background-color: yellow">Bank</button>
-      <button style="background-color: cadetblue">Work</button>
+      <p> <span id="pay">0</span> SEK</p>
+
+      <button class="button" id="bank">Bank</button>
+      <button class="button" id="work">Work</button>
     </div>
     <div class="column" style="background-color: #ccc">
       <h4>Laptops</h4>
       <select name="laptops" id="laptops"></select>
-      <ul>
       <h4>Features: </h4>
-        <p>Some text..</p>
-        <p>Some text..</p>
-        <p>Some text..</p>
+      <ul id="specs">
       </ul>
     </div>
   </div>
@@ -55,19 +72,24 @@
 </section>
 
 <div class="display" style="background-color: #ddd">
- <div>
-   <h4>Display from select</h4>
-   <p>Some text .....</p>
-   <p>Some text .....</p>
-   <p>Some text .....</p>
-   <p>Some text .....</p>
+
+ <div class="computerImage">
+   <div>
+     <img src="" alt="" id="image">
+   </div>
+   <div>
+   <h4 id="selectedLaptop"></h4>
+     <p id="laptopDetails"></p>
+   </div>
+
  </div>
   <div>
-    <h4>1500 SEK</h4>
-    <button style="background-color: aqua">BUY NOW</button>
+    <h4><span id="laptopPrice"></span></h4>
+    <button class="button" id="buyNow">BUY NOW</button>
   </div>
 </div>
 <script src="index.js"></script>
+<!--<script src="header.js"></script>-->
 </body>
 
 </html>
